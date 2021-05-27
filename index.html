@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<link rel="stylesheet" href="index.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+</head>
+<body>
+   <section>
+<h1> Corona Worldometer</h1>
+<div class="centerDiv">
+<div class="details">
+<label> COUNTRY</label>
+<input type="text" name="" id="nameid">
+</div>
+<button id="btn"> Click Me</button>
+<!------->
+<p id="demo"></p>
+<div class="coviddetails">
+   <label> New Confirmed Cases </label><br>
+   <input type="number" name="" id="newconfirmedid"><br>
+
+   <label> Total Confirmed Cases </label><br>
+   <input type="number" name="" id="totalconfirmedid"><br>
+
+   <label> New Deaths    </label><br>
+   <input type="number" name="" id="newdeathsid"><br>
+
+   <label> New Recovered Cases </label><br>
+   <input type="number" name="" id="newrecoveredid">
+
+
+   </div>
+
+</div>
+</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+   
+
+fetch('https://api.covid19api.com/summary').then((apidata)=>
+{
+   //console.log(apidata);
+   return apidata.json();
+}) .then( (actualdata) =>
+{
+   console.log(actualdata);
+   document.getElementById("btn").addEventListener("click", function() {
+   var noofcountries =actualdata.Countries;
+   var input_country= document.getElementById("nameid").value.toUpperCase();
+   var countryfound=false;
+   for(var i=0;i<noofcountries.length;i++)
+  {
+          if(input_country===noofcountries[i].Country.toUpperCase())
+     {
+        //alert("Your country details are available with us!");
+        document.getElementById("newconfirmedid").value=noofcountries[i].NewConfirmed;
+        document.getElementById("totalconfirmedid").value=noofcountries[i].TotalConfirmed;
+        document.getElementById("newdeathsid").value=noofcountries[i].NewDeaths;
+        document.getElementById("newrecoveredid").value=noofcountries[i].NewRecovered;
+        countryfound=true;
+        break;
+     }
+} //for loop close
+if(countryfound) {
+// Do Nothing
+}
+else
+{
+   
+   document.getElementById("newconfirmedid").value="";
+        document.getElementById("totalconfirmedid").value="";
+        document.getElementById("newdeathsid").value="";
+        document.getElementById("newrecoveredid").value="";
+        alert("Data for " +input_country + " is not UPDATED!!")
+}
+
+   
+});//then close
+  
+})
+ .catch ((error) =>
+{
+   console.log("Country is not in list!!");
+});
+var d = new Date();
+document.getElementById("demo").innerHTML = d;
+</script>

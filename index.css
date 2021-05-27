@@ -1,0 +1,51 @@
+
+body
+{
+    
+background: -webkit-linear-gradient(90deg, rgb(157, 193, 226), rgb(164, 192, 221));
+background: linear-gradient(90deg, rgb(157, 193, 226), rgb(164, 192, 221));
+  
+   font-family: 'Bree Serif', serif;
+}
+
+h1{
+   text-align: center;
+   color: rgb(7, 9, 146);
+}
+
+#demo
+{
+   color:white;
+   font-size: 20px;
+}
+.centerDiv
+{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+    
+   margin-left: 20%;
+   margin-right: 20%;
+   margin-top: 2%;
+   background-color: rgb(114, 135, 228);
+   padding: 50px;
+   
+}
+
+label
+{
+   color: ghostwhite;
+   font-size: 20px;
+}
+#btn
+{
+   width: 100px;
+   height: 50px;
+   border-radius: 50px;
+   border-style: none;
+   margin-top: 10px;
+   color: aliceblue;
+   font-size: 20px;
+   background-color:rgb(54, 24, 228);
+}
